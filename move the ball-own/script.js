@@ -1,29 +1,33 @@
 
 var ball=document.getElementsByTagName('div')[0];
 var down=0,right=0;
+ball.style.transform="translate(0px,0px)";
 document.onkeydown=function(event){
 
  var coord=ball.getBoundingClientRect();
+ var a=parseInt(ball.style.top);
 var key= event.keyCode;
-console.log(key); 
+// console.log(a+" "+ball.style.top+"s "+ball.offsetTop+" "+coord.top); 
 if(key===40  && coord.bottom<window.innerHeight){
-down+=10;
-ball.style.transform="translate("+right+"px,"+down+"px)";
+    if(coord.bottom+5<window.innerHeight)
+     down=down+5;
+     ball.style.transform="translate("+right+"px,"+down+"px)";
 }
 
 else if(key==38 && coord.top>0){
-    down=down-10;
+    down=down-5;
     ball.style.transform="translate("+right+"px,"+down+"px)";
 
 }
 
 else if(key==39 && coord.right<window.innerWidth){
-    right=right+10;
+    if(coord.right+5<window.innerWidth)
+    right=right+5;
     ball.style.transform="translate("+right+"px,"+down+"px)";
 
 }
 else if(key==37 && coord.left>0){
-    right=right-10;
+    right=right-5;
     ball.style.transform="translate("+right+"px,"+down+"px)";
 
 }
